@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntityRenderer.class)
 public abstract class MixinLivingEntityRenderer {
-    @Inject(method = "shouldShowName(Lnet/minecraft/world/entity/LivingEntity;)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;renderNames()Z"), cancellable = true)
-    private void injectHasLabel(LivingEntity livingEntity, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "shouldShowName(Lnet/minecraft/world/entity/LivingEntity;D)Z", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;renderNames()Z"), cancellable = true)
+    private void injectHasLabel(LivingEntity livingEntity, double d, CallbackInfoReturnable<Boolean> cir) {
         if (PerspectiveNametag.DISABLED) return;
         var mc = Minecraft.getInstance();
         var server = mc.getCurrentServer();
